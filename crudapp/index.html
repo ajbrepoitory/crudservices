@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='UTF-8' />
+	
+<style type="text/css">
+/* ---------Single Page Website CSS by Kelly King ----------*/
+
+*{ margin: 0 auto;}
+
+
+body {
+	background:white; 
+	margin: 0 auto; 
+	font-family:georgia, times,serif; 
+	height:2000px;
+	}
+
+#header {
+	position:fixed;
+	top:0px;
+	left:0px;
+	background:#666; 
+	height:70px; 
+	width:100%;
+	}
+
+#nav {
+	margin-left:50px;
+	margin-top:45px;
+	word-spacing:20px;
+}
+	
+#page1 {
+	height:1100px;
+	width:1000px;
+	background:#afc9ff;
+	padding-top:110px;
+	}
+	
+#page2 {
+	height:1100px;
+	width:1000px;
+	background:#777cdc;
+	padding-top:150px;
+	}
+	
+#page3 {
+	height:1100px;
+	width:1000px;
+	background:#9b70c0;
+	padding-top:150px;
+	}
+	
+.page-padding {height:90px; width:100%;}
+
+a { color:white; text-decoration:none;}
+	
+a:hover { text-decoration:underline;}
+
+/* latin */
+@font-face {
+  font-family: 'Annie Use Your Telescope';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Annie Use Your Telescope Regular'), local('AnnieUseYourTelescope-Regular'), url(http://fonts.gstatic.com/s/annieuseyourtelescope/v8/2cuiO5VmaR09C8SLGEQjGka-vN3cnM35kL5a2hXIL_33rGVtsTkPsbDajuO5ueQw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+</style>
+</head>
+<body>
+	
+
+
+<div id="header">
+	<div id="nav">
+		<a href="#about">About</a>
+		<a href="#portfolio">Portfolio</a>
+		<a href="#contact">Contact</a> <span style="word-spacing:normal; color:white; font-family:'Annie Use Your Telescope', arial, serif; font-size:20px;"></span>
+	</div>
+</div>
+
+<div id="page-wrap">
+
+	<div id="page1">
+		<a name="about"></a>
+		<div class="page-padding"></div>
+		<p>This is what you see on the About page.</p>
+	</div> <!--END page1-->
+	
+	<div id="page2">
+		<a name="portfolio"></a>
+		<div class="page-padding"></div>
+		<p>This is what you would see on the Portfolio page.</p>
+	</div> <!--END page2-->
+
+	<div id="page3">
+		<a name="contact"></a> 
+		<div class="page-padding"></div>
+		<p>This is what you see on the Contact page.</p>
+	</div> <!--END page3-->
+	
+</div> <!--END page-wrap-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script>$(document).ready(function() {
+  function filterPath(string) {
+    return string
+      .replace(/^\//,'')  
+      .replace(/(index|default).[a-zA-Z]{3,4}$/,'')  
+      .replace(/\/$/,'');
+  }
+  $('a[href*=#]').each(function() {
+    if ( filterPath(location.pathname) == filterPath(this.pathname)
+    && location.hostname == this.hostname
+    && this.hash.replace(/#/,'') ) {
+      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
+      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+       if ($target) {
+         var targetOffset = $target.offset().top;
+         $(this).click(function() {
+           $('html, body').animate({scrollTop: targetOffset}, 2000);
+           return false;
+         });
+      }
+    }
+  });
+});</script>
+</body>
+</html>
