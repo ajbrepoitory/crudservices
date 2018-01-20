@@ -36,21 +36,25 @@ body {
 	height:1100px;
 	width:1000px;
 	background:#afc9ff;
-	padding-top:110px;
+	border-radius: 20px;
+    padding: 20px;
+    overflow:scroll;
 	}
 	
 #page2 {
 	height:1100px;
 	width:1000px;
 	background:#777cdc;
-	padding-top:150px;
+	border-radius: 20px;
+    padding: 80px;
 	}
 	
 #page3 {
 	height:1100px;
 	width:1000px;
 	background:#9b70c0;
-	padding-top:150px;
+	border-radius: 20px;
+    padding: 80px;
 	}
 	
 .page-padding {height:90px; width:100%;}
@@ -67,6 +71,44 @@ a:hover { text-decoration:underline;}
   src: local('Annie Use Your Telescope Regular'), local('AnnieUseYourTelescope-Regular'), url(http://fonts.gstatic.com/s/annieuseyourtelescope/v8/2cuiO5VmaR09C8SLGEQjGka-vN3cnM35kL5a2hXIL_33rGVtsTkPsbDajuO5ueQw.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
 </style>
 </head>
 <body>
@@ -75,9 +117,9 @@ a:hover { text-decoration:underline;}
 
 <div id="header">
 	<div id="nav">
-		<a href="#about">About</a>
+		<a href="#about">Home</a>
 		<a href="#portfolio">Portfolio</a>
-		<a href="#contact">Contact</a> <span style="word-spacing:normal; color:white; font-family:'Annie Use Your Telescope', arial, serif; font-size:20px;"></span>
+		<a href="#contact">Contacts</a><span style="word-spacing:normal; color:white; font-family:'Annie Use Your Telescope', arial, serif; font-size:20px;"></span>
 	</div>
 </div>
 
@@ -86,13 +128,22 @@ a:hover { text-decoration:underline;}
 	<div id="page1">
 		<a name="about"></a>
 		<div class="page-padding"></div>
-		<p>This is what you see on the About page.</p>
+		<form name="quoteMe" id="quoteMe">
+		 <label for="name">Who wants to shout ?</label>
+		  <input type="text" placeholder="name" name="name">
+		 <label for="quote">What to shout About</label>
+		  <input type="text" placeholder="quote" name="quote">
+		  <input type="submit">Shout</input>
+		</form>
+		<div id="quotesDisplay"></div>		
 	</div> <!--END page1-->
 	
 	<div id="page2">
 		<a name="portfolio"></a>
 		<div class="page-padding"></div>
 		<p>This is what you would see on the Portfolio page.</p>
+		
+		
 	</div> <!--END page2-->
 
 	<div id="page3">
@@ -126,6 +177,45 @@ a:hover { text-decoration:underline;}
       }
     }
   });
+  function getQuotes(){
+  $.ajax({
+	    type: "GET",
+	    contentType: "application/json; charset=utf-8",
+	    url: "/quotes",
+	    data: "{}",
+	    async: false,
+	    dataType: 'json',
+	    success: function (response) {
+	      var displayDiv = document.getElementById("quotesDisplay");
+    	  var quotes='<table><th>What do We say ?</th></tr>';
+    	  var tempQuotes='';
+	        $.each(response, function(idx, value){
+	        	tempQuotes="<tr><td>"+value.name+" says "+value.quote+'</td></tr>'+tempQuotes;
+	        	//alert(value)
+	        });
+	        //alert(quotes)
+	        quotes=quotes+tempQuotes+'</table>';
+	        displayDiv.innerHTML=quotes;
+	        //alert(quotes);
+	    }
+	})
+  }
+	$('#quoteMe').submit(function(e){
+		  e.preventDefault();
+		  //do some verification
+		  $.ajax({
+			type: "POST",
+		    url: '/quotes',
+		    data: $(this).serialize(),
+		    success: function(data)
+		    {
+		      //callback methods go right here
+		      getQuotes()
+		      $('#quoteMe').trigger("reset");
+		    }
+		  });
+		});
+	getQuotes();
 });</script>
 </body>
 </html>
