@@ -1,4 +1,4 @@
-package org.ajb.services.rest;
+/*package org.ajb.services.rest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 @Autowired
 private AuthenticationEntryPoint authEntryPoint;
-/*@Override
+@Override
 protected void configure(HttpSecurity http) throws Exception {
 http.csrf().disable().authorizeRequests()
 .anyRequest().authenticated()
 .and().httpBasic()
 .authenticationEntryPoint(authEntryPoint);
-}*/
+}
 @Autowired
 public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 auth.inMemoryAuthentication().withUser("username").password("password").roles("USER");
@@ -30,3 +30,4 @@ auth.inMemoryAuthentication().withUser("username").password("password").roles("U
 
 
 }
+*/

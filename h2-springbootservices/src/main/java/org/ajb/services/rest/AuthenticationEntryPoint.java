@@ -1,4 +1,4 @@
-package org.ajb.services.rest;
+/*package org.ajb.services.rest;
 
 import java.io.IOException; 
 import java.io.PrintWriter;
@@ -30,3 +30,4 @@ public class AuthenticationEntryPoint extends BasicAuthenticationEntryPoint {
 
 
 }
+*/
