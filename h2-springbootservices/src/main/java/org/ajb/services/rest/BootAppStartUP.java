@@ -1,4 +1,4 @@
-package org.ajb.services.rest;
+/*package org.ajb.services.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -22,3 +22,4 @@ public class BootAppStartUP extends SpringBootServletInitializer {
     }
 }
 
+*/
