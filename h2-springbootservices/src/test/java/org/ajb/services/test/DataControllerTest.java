@@ -44,8 +44,8 @@ public class DataControllerTest {
 
 	@Test
 	public void retrievetest_ok() throws Exception {
-		addhospital_ok();
-		 mockMvc.perform(get("/test/hospitals/1000" )).andDo(print())
+		addPOJO_ok();
+		 mockMvc.perform(get("/crud/pojos/1000" )).andDo(print())
 	                .andExpect(status().isOk())
 	                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1000))
 	                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Apollo CrudPOJO"))
@@ -56,7 +56,7 @@ public class DataControllerTest {
 	
 	
 	@Test
-	public void addhospital_ok() throws Exception {
+	public void addPOJO_ok() throws Exception {
 		CrudPOJO hosp=new CrudPOJO();
 		hosp.setId(1000);
 		hosp.setName("Apollo CrudPOJO");
@@ -69,12 +69,12 @@ public class DataControllerTest {
 		hosp1.setCity("Bangalore");
 		hosp1.setRating(3.5);
 		byte[] hospJson1 = toJson(hosp1);
-		 mockMvc.perform(post("/test/hospitals/" )//.andDo(print())
+		 mockMvc.perform(post("/crud/pojos/" )//.andDo(print())
 		 			.content(hospJson)
 		 			.contentType(MediaType.APPLICATION_JSON)
 		 			.accept(MediaType.APPLICATION_JSON))
 	                .andExpect(status().isOk());
-		 mockMvc.perform(post("/test/hospitals/" )//.andDo(print())
+		 mockMvc.perform(post("/crud/pojos/" )//.andDo(print())
 		 			.content(hospJson1)
 		 			.contentType(MediaType.APPLICATION_JSON)
 		 			.accept(MediaType.APPLICATION_JSON))
@@ -82,35 +82,35 @@ public class DataControllerTest {
 	}
 	
 	@Test
-	public void updatehospital_ok() throws Exception {
+	public void updatePOJO_ok() throws Exception {
 		CrudPOJO hosp1=new CrudPOJO();
 		hosp1.setId(1001);
-		hosp1.setName("Global Hospitals");
+		hosp1.setName("Global POJOs");
 		hosp1.setCity("Goa");
 		hosp1.setRating(3.5);
 		byte[] hospJson1 = toJson(hosp1);
-		 mockMvc.perform(post("/test/hospitals/" )//.andDo(print())
+		 mockMvc.perform(post("/crud/pojos/" )//.andDo(print())
 		 			.content(hospJson1)
 		 			.contentType(MediaType.APPLICATION_JSON)
 		 			.accept(MediaType.APPLICATION_JSON))
 	                .andExpect(status().isOk());          
 		 
-		 mockMvc.perform(get("/test/hospitals/1001" )).andDo(print())
+		 mockMvc.perform(get("/crud/pojos/1001" )).andDo(print())
          .andExpect(status().isOk())
-         .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Global Hospitals"))
+         .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Global POJOs"))
          .andExpect(MockMvcResultMatchers.jsonPath("$.city").value("Goa"));
 	}
 	
 	
 	@Test
-	public void deleteHospital_ok() throws Exception {
+	public void deletePOJO_ok() throws Exception {
 		CrudPOJO hosp=new CrudPOJO();
 		hosp.setId(1000);
 		hosp.setName("Apollo CrudPOJO");
 		hosp.setCity("Chennai");
 		hosp.setRating(3.8);
 		byte[] hospJson = toJson(hosp);
-		mockMvc.perform(delete("/test/hospitals/" )//.andDo(print())
+		mockMvc.perform(delete("/crud/pojos/" )//.andDo(print())
 	 			.content(hospJson)
 	 			.contentType(MediaType.APPLICATION_JSON)
 	 			.accept(MediaType.APPLICATION_JSON))

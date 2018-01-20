@@ -16,28 +16,28 @@ public class DataService {
 	private DataRepository dataRepository;
 
 
-public List<CrudPOJO> getAllHospitals(){
+public List<CrudPOJO> getAllPOJOs(){
 
-    List<CrudPOJO> hospitalList= new ArrayList<CrudPOJO>();
+    List<CrudPOJO> POJOList= new ArrayList<CrudPOJO>();
 
-    dataRepository.findAll().forEach(hospitalList::add);
+    dataRepository.findAll().forEach(POJOList::add);
 
-    return hospitalList;
+    return POJOList;
 
 }
 
-public CrudPOJO getHospital(int id){
+public CrudPOJO getPOJO(int id){
 	return dataRepository.findOne(id);
 }
 
-public void addHospital(CrudPOJO crudPOJO){
+public void addPOJO(CrudPOJO crudPOJO){
 	dataRepository.save(crudPOJO);
 }
 
-public void updateHospital(CrudPOJO crudPOJO){
+public void updatePOJO(CrudPOJO crudPOJO){
 		dataRepository.save(crudPOJO);
 	}
-public void deleteHospital(CrudPOJO crudPOJO) {
+public void deletePOJO(CrudPOJO crudPOJO) {
 	dataRepository.delete(crudPOJO);
 }
 

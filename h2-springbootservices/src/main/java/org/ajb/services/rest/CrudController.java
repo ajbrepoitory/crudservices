@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/test/")
+@RequestMapping("/crud/")
 public class CrudController {
 
 	@Autowired
@@ -24,31 +24,31 @@ public class CrudController {
 
 
 
-	@GetMapping("hospitals")
-	public @ResponseBody List<CrudPOJO> getAllHospitals() throws Exception {
-		return dataService.getAllHospitals();
+	@GetMapping("pojos")
+	public @ResponseBody List<CrudPOJO> getAllPOJOs() throws Exception {
+		return dataService.getAllPOJOs();
 	}
-	@PostMapping("hospitals")
-	public ResponseEntity<String> addHospital(@RequestBody CrudPOJO crudPOJO) {
+	@PostMapping("pojos")
+	public ResponseEntity<String> addPOJO(@RequestBody CrudPOJO crudPOJO) {
 
-		dataService.addHospital(crudPOJO);
+		dataService.addPOJO(crudPOJO);
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
-	@PutMapping("hospitals")
-	public ResponseEntity<String> updateHospital(@RequestBody CrudPOJO crudPOJO) {
+	@PutMapping("pojos")
+	public ResponseEntity<String> updatePOJO(@RequestBody CrudPOJO crudPOJO) {
 
-		dataService.updateHospital(crudPOJO);
+		dataService.updatePOJO(crudPOJO);
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
-	@DeleteMapping("hospitals")
-	public ResponseEntity<String> deleteHospital(@RequestBody CrudPOJO crudPOJO) {
+	@DeleteMapping("pojos")
+	public ResponseEntity<String> deletePOJO(@RequestBody CrudPOJO crudPOJO) {
 
-		dataService.deleteHospital(crudPOJO);
+		dataService.deletePOJO(crudPOJO);
 		return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
 	}
 	
-	@GetMapping("hospitals/{id}")
-	public @ResponseBody CrudPOJO getHospital(@PathVariable("id") int id) throws Exception {
-		return dataService.getHospital(id);
+	@GetMapping("pojos/{id}")
+	public @ResponseBody CrudPOJO getPOJO(@PathVariable("id") int id) throws Exception {
+		return dataService.getPOJO(id);
 	}
 }
