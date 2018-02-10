@@ -7,7 +7,7 @@ const MongoClient = require('mongodb').MongoClient
 MongoClient.connect(process.env.MONGOURL, (err, database) => {
 	// ... start the server
 	if (err) return console.log(err)
-	db = database.db('MONGODB')
+	db = database.db('CRUD')
 	app.listen(8080, function() {
 		console.log('listening on 8080')
 		app.get('/hello', function(req, res) {
